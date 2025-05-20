@@ -3,12 +3,14 @@
     {
       "id": "c1a2b3d4",
       "message": "Fix login bug",
-      "author": {"name": "Praveen"}
+      "author": { "name": "Praveen" },
+      "timestamp": "2025-05-20T10:30:00Z"
     },
     {
       "id": "d4e5f6g7",
       "message": "Add user profile feature",
-      "author": {"name": "Praveen"}
+      "author": { "name": "Praveen" },
+      "timestamp": "2025-05-20T10:45:00Z"
     }
   ]
 }
