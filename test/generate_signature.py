@@ -1,10 +1,8 @@
 import hmac
 import hashlib
 
-# Secret used for generating the HMAC signature
 secret = b"pravinwin4"
 
-# Read the test payload (simulate a webhook body)
 with open("test_webhook.json", "rb") as f:
     body = f.read()
 
