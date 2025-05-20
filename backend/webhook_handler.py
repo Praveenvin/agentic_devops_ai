@@ -1,5 +1,6 @@
 from db import get_db_connection
-from datetime import datetime
+from dateutil import parser
+
 
 def classify_commit(message):
     message_lower = message.lower()
@@ -25,7 +26,7 @@ def handle_webhook(payload):
         message = commit.get('message')
         author = commit.get('author', {}).get('name')
         timestamp_raw = commit.get('timestamp')
-        timestamp = datetime.strptime(timestamp_raw, "%Y-%m-%dT%H:%M:%SZ").strftime("%Y-%m-%d %H:%M:%S")
+        timestamp = parser.isoparse(timestamp_raw).strftime("%Y-%m-%d %H:%M:%S")
         label = classify_commit(message)
 
         cursor.execute("""
