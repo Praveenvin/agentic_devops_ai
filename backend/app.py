@@ -5,7 +5,7 @@ import hashlib
 import os
 from dotenv import load_dotenv
 
-# Load environment variables
+# Load environment variables from .env
 load_dotenv()
 
 app = Flask(__name__)
@@ -19,16 +19,15 @@ def verify_signature(data, signature):
 @app.route('/webhook', methods=['POST'])
 def webhook():
     signature = request.headers.get('X-Hub-Signature-256')
-    if signature is None:
+    if not signature:
         abort(400, 'Missing signature')
 
     data = request.get_data()
     if not verify_signature(data, signature):
         abort(400, 'Invalid signature')
 
-    payload = request.get_json()
     print("✅ Webhook received and verified.")
-    handle_webhook(payload)
+    handle_webhook(data.decode())
     return jsonify({"status": "success"}), 200
 
 @app.route('/')
